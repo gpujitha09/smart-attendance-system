@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance Dashboard V4</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Animated Orbs -->
+    <div class="bg-orb orb1"></div>
+    <div class="bg-orb orb2"></div>
+
+    <div class="app-container glass-panel">
+        <header>
+            <h1>Smart Attendance System</h1>
+            <p>AI-Powered Face Recognition Dashboard</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('home')">🏠 Home Dashboard</button>
+            <button class="tab-btn" onclick="switchTab('register')">👤 New Registration</button>
+            <button class="tab-btn" onclick="switchTab('attendance')">✔️ Mark Attendance</button>
+        </div>
+
+        <div class="alert-box" id="alert-box">Loading...</div>
+
+        <!-- 1. HOME TAB -->
+        <div id="home" class="tab-content active view-fade-in">
+            <div class="home-hero">
+                <h2>Welcome to the Next Generation</h2>
+                <p>Select a workflow from the navigation above.</p>
+                <div class="cards">
+                    <div class="card glass-panel" onclick="switchTab('register')">
+                        <h3>New Students</h3>
+                        <p>Enroll your biometric profile into the AI database securely.</p>
+                    </div>
+                    <div class="card glass-panel" onclick="switchTab('attendance')">
+                        <h3>Existing Students</h3>
+                        <p>Log your daily attendance directly via scanning terminal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. REGISTRATION TAB -->
+        <div id="register" class="tab-content view-fade-in" style="display: none;">
+            <div class="split-layout">
+                <div class="glass-panel panel-left controls-panel">
+                    <h2>Enroll Profile</h2>
+                    <div class="input-group">
+                        <label>Student ID</label>
+                        <input type="text" id="reg-id" placeholder="e.g. 01">
+                    </div>
+                    <div class="input-group">
+                        <label>Student Name</label>
+                        <input type="text" id="reg-name" placeholder="e.g. Poojitha">
+                    </div>
+                    <button class="btn btn-primary" onclick="startRegistration()">1. Start Scanning Face</button>
+                    <button class="btn btn-warning" onclick="trainProfile()">2. Save Profile (Train AI)</button>
+                    
+                    <div id="reg-progress" class="progress-bar">
+                        <div class="progress-fill" id="reg-fill"></div>
+                    </div>
+                    <p id="reg-status">Ready for enrollment.</p>
+                </div>
+                
+                <div class="glass-panel panel-right camera-panel">
+                    <h3>Biometric Scanner</h3>
+                    <img id="reg-camera-stream" class="video-stream" src="" alt="Camera Stream Off">
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. ATTENDANCE TAB -->
+        <div id="attendance" class="tab-content view-fade-in" style="display: none;">
+            <div class="split-layout">
+                <div class="glass-panel panel-left camera-panel">
+                    <h3>Live Scanner</h3>
+                    <img id="att-camera-stream" class="video-stream" src="" alt="Camera Stream Off">
+                    <button class="btn btn-success mega-btn" onclick="markAttendance()">✔️ MARK ATTENDANCE</button>
+                </div>
+                
+                <div class="glass-panel panel-right data-panel">
+                    <div class="table-header">
+                        <h3>Today's Log</h3>
+                        <button class="btn btn-secondary" onclick="exportExcel()">📊 Export Excel</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="attendance-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendance-tbody">
+                                <!-- Data injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- The Javascript Application Logic -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

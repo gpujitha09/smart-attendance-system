@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+env/
+venv/
+.env
+
+# ==========================================
+# SENSITIVE DATA FOLDERS (DO NOT PUSH THIS)
+# (app.py will dynamically recreate these folders on any new computer)
+# ==========================================
+TrainingImage/
+TrainingImageLabel/
+StudentDetails/
+Attendance/
+
+# IDEs
+.idea/
+.vscode/
